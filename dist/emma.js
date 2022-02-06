@@ -42,10 +42,8 @@ var Emma = /** @class */ (function () {
             parser = new SingleTagParser(rootNode);
         }
         console.log(parser.run());
+        return parser.run();
         // console.log(JSON.stringify(rootNode, null, 2));
-    };
-    Emma.prototype.containsMultiplier = function (emmet) {
-        return emmet.indexOf("*") > -1;
     };
     Emma.prototype.splitTree = function () {
         return this.emmet.split(">");
@@ -54,8 +52,11 @@ var Emma = /** @class */ (function () {
 }());
 // const parser = new Emma("ul>li*6");
 // parser.open();
-new Emma("#withId").open();
+new Emma("#withId${Hii}*10").open();
 new Emma(".with$Class*5").open();
 new Emma("span#withId").open();
-new Emma("h$.withClass$*6").open();
-new Emma("div*5").open();
+new Emma("h$.withClass${Heading $}*6").open();
+new Emma("div{Hii}*5").open();
+document.body.innerHTML += "<div>" + new Emma("h${Heading $}* 6").open() + "</div>";
+console.log(new Emma("ul>li*5"));
+//# sourceMappingURL=emma.js.map

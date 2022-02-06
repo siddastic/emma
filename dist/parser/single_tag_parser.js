@@ -47,24 +47,39 @@ var SingleTagParser = /** @class */ (function (_super) {
         enumerable: false,
         configurable: true
     });
+    Object.defineProperty(SingleTagParser.prototype, "containsText", {
+        get: function () {
+            return (this.emmet.element.indexOf("{") > -1 &&
+                this.emmet.element.indexOf("}") > -1 &&
+                this.emmet.element.indexOf("}") > this.emmet.element.indexOf("{"));
+        },
+        enumerable: false,
+        configurable: true
+    });
     SingleTagParser.prototype.run = function () {
         var element = this.emmet.element;
+        var text = '';
+        if (this.containsText) {
+            text = element.substring(element.indexOf("{") + 1, element.indexOf("}"));
+            element = element.split("{")[0] + element.split("}")[1];
+        }
         if (this.startsWithClass) {
-            return "<div class = \"" + element.substring(1) + "\"></div>";
+            return "<div class = \"" + element.substring(1) + "\">" + text + "</div>";
         }
         else if (this.startsWithId) {
-            return "<div id = \"" + element.substring(1) + "\"></div>";
+            return "<div id = \"" + element.substring(1) + "\">" + text + "</div>";
         }
         else if (this.containsClassInMiddle) {
-            return "<" + element.split(".")[0] + " class = \"" + element.split(".")[1] + "\"></" + element.split(".")[0] + ">";
+            return "<" + element.split(".")[0] + " class = \"" + element.split(".")[1] + "\">" + text + "</" + element.split(".")[0] + ">";
         }
         else if (this.containsIdInMiddle) {
-            return "<" + element.split("#")[0] + " id = \"" + element.split("#")[1] + "\"></" + element.split("#")[0] + ">";
+            return "<" + element.split("#")[0] + " id = \"" + element.split("#")[1] + "\">" + text + "</" + element.split("#")[0] + ">";
         }
         else {
-            return "<" + element + "></" + element + ">";
+            return "<" + element + ">" + text + "</" + element + ">";
         }
     };
     return SingleTagParser;
 }(NodeParser));
 export default SingleTagParser;
+//# sourceMappingURL=single_tag_parser.js.map

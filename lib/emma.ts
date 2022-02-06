@@ -25,7 +25,7 @@ class Emma {
     // }
 
 
-    public open() {
+    public open() : string{
         var arr = this.splitTree();
         let rootNode: EmmaRootNode | null | undefined;
         arr.forEach((leaf, index) => {
@@ -46,11 +46,9 @@ class Emma {
             parser = new SingleTagParser(rootNode!);
         }
         console.log(parser.run());
-        // console.log(JSON.stringify(rootNode, null, 2));
-    }
 
-    public containsMultiplier(emmet: string): Boolean {
-        return emmet.indexOf("*") > -1;
+        return parser.run();
+        // console.log(JSON.stringify(rootNode, null, 2));
     }
 
     public splitTree(): Array<string> {
@@ -61,8 +59,12 @@ class Emma {
 // const parser = new Emma("ul>li*6");
 // parser.open();
 
-new Emma("#withId").open();
+new Emma("#withId${Hii}*10").open();
 new Emma(".with$Class*5").open();
 new Emma("span#withId").open();
-new Emma("h$.withClass$*6").open();
-new Emma("div*5").open();
+new Emma("h$.withClass${Heading $}*6").open();
+new Emma("div{Hii}*5").open();
+
+document.body.innerHTML += `<div>${new Emma("h${Heading $}* 6").open()}</div>`;
+
+console.log(new Emma("ul>li*5"));
