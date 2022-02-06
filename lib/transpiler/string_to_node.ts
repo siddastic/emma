@@ -15,7 +15,7 @@ class StringToNode {
             emmet: this.str,
             type: 'root',
             currentLevelSplit: this.str,
-            element: this.str.split("*")[0],
+            element: this.str,
             operations : this.containsMultiplier ? EmmetOperations.Multiply : undefined,
         };
     }
@@ -28,7 +28,7 @@ class StringToNode {
         return {
             type: 'element',
             currentLevelSplit: this.str,
-            element: this.str.split("*")[0],
+            element: this.str,
             operations : this.containsMultiplier ? EmmetOperations.Multiply : undefined,
         };
     }

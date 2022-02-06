@@ -1,4 +1,6 @@
 import { EmmaElementNode, EmmaRootNode } from "./interface.js";
+import MultiplicationParser from "./parser/multiplication_parser.js";
+import NodeParser from "./parser/node_parser.js";
 import SingleTagParser from "./parser/single_tag_parser.js";
 import StringToNode from "./transpiler/string_to_node.js";
 
@@ -36,9 +38,15 @@ class Emma {
                 rootNode!.child = output;
             }
         });
-        var singleTagParser = new SingleTagParser(rootNode!);
-        console.log(singleTagParser.run());
-        console.log(JSON.stringify(rootNode, null, 2));
+        let parser : NodeParser;
+        if(this.emmet.indexOf("*") > -1){
+            parser = new MultiplicationParser(rootNode!);
+        }
+        else{
+            parser = new SingleTagParser(rootNode!);
+        }
+        console.log(parser.run());
+        // console.log(JSON.stringify(rootNode, null, 2));
     }
 
     public containsMultiplier(emmet: string): Boolean {
@@ -54,7 +62,7 @@ class Emma {
 // parser.open();
 
 new Emma("#withId").open();
-new Emma(".withClass").open();
+new Emma(".with$Class*5").open();
 new Emma("span#withId").open();
-new Emma("h1.withClass").open();
-new Emma("div").open();
+new Emma("h$.withClass$*6").open();
+new Emma("div*5").open();

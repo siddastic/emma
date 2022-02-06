@@ -24,5 +24,5 @@ export interface EmmaTextNode {
 
 export enum EmmetOperations {
     Add,
-    Multiply
+    Multiply,
 }

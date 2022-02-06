@@ -1,3 +1,4 @@
+import MultiplicationParser from "./parser/multiplication_parser.js";
 import SingleTagParser from "./parser/single_tag_parser.js";
 import StringToNode from "./transpiler/string_to_node.js";
 var Emma = /** @class */ (function () {
@@ -33,9 +34,15 @@ var Emma = /** @class */ (function () {
                 rootNode.child = output;
             }
         });
-        var singleTagParser = new SingleTagParser(rootNode);
-        console.log(singleTagParser.run());
-        console.log(JSON.stringify(rootNode, null, 2));
+        var parser;
+        if (this.emmet.indexOf("*") > -1) {
+            parser = new MultiplicationParser(rootNode);
+        }
+        else {
+            parser = new SingleTagParser(rootNode);
+        }
+        console.log(parser.run());
+        // console.log(JSON.stringify(rootNode, null, 2));
     };
     Emma.prototype.containsMultiplier = function (emmet) {
         return emmet.indexOf("*") > -1;
@@ -48,7 +55,7 @@ var Emma = /** @class */ (function () {
 // const parser = new Emma("ul>li*6");
 // parser.open();
 new Emma("#withId").open();
-new Emma(".withClass").open();
+new Emma(".with$Class*5").open();
 new Emma("span#withId").open();
-new Emma("h1.withClass").open();
-new Emma("div").open();
+new Emma("h$.withClass$*6").open();
+new Emma("div*5").open();
