@@ -26,7 +26,7 @@ var Emma = /** @class */ (function () {
         arr.forEach(function (leaf, index) {
             if (index == 0) {
                 // parsing root node
-                var output = new StringToNode(leaf).parse(true);
+                var output = new StringToNode(leaf).parse();
                 rootNode = output;
             }
             else {
@@ -58,5 +58,6 @@ new Emma("span#withId").open();
 new Emma("h$.withClass${Heading $}*6").open();
 new Emma("div{Hii}*5").open();
 document.body.innerHTML += "<div>" + new Emma("h${Heading $}* 6").open() + "</div>";
+document.body.innerHTML += "" + new Emma("li#withId${Hii this is line $}*100").open();
 console.log(new Emma("ul>li*5"));
 //# sourceMappingURL=emma.js.map

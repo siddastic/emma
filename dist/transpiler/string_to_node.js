@@ -3,21 +3,8 @@ var StringToNode = /** @class */ (function () {
     function StringToNode(str) {
         this.str = str;
     }
-    StringToNode.prototype.parse = function (isRootNode) {
-        if (isRootNode === void 0) { isRootNode = false; }
-        if (isRootNode) {
-            return this.parseAsRootNode();
-        }
+    StringToNode.prototype.parse = function () {
         return this.parseAsElementNode();
-    };
-    StringToNode.prototype.parseAsRootNode = function () {
-        return {
-            emmet: this.str,
-            type: 'root',
-            currentLevelSplit: this.str,
-            element: this.str,
-            operations: this.containsMultiplier ? EmmetOperations.Multiply : undefined,
-        };
     };
     Object.defineProperty(StringToNode.prototype, "containsMultiplier", {
         get: function () {

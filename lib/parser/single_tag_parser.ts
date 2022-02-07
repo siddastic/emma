@@ -1,8 +1,8 @@
-import { EmmaElementNode, EmmaRootNode } from "../interface.js";
+import { EmmaElementNode } from "../interface.js";
 import NodeParser from "./node_parser.js";
 
 class SingleTagParser extends NodeParser {
-  constructor(private emmet: EmmaElementNode | EmmaRootNode) {
+  constructor(private emmet: EmmaElementNode) {
     super();
   }
   get startsWithClass(): boolean {

@@ -1,16 +1,8 @@
-export interface EmmaRootNode{
-    type: 'root';
-    element: string;
-    emmet: string;
-    operations?: EmmetOperations;
-    currentLevelSplit: string;
-    child?: EmmaNode;
-}
-
-export type EmmaNode = EmmaRootNode | EmmaElementNode;
+export type EmmaNode = EmmaElementNode;
 
 export interface EmmaElementNode {
     type: "element";
+    // current element emmet string
     element: string;
     operations?: EmmetOperations;
     currentLevelSplit: string;
@@ -23,6 +15,5 @@ export interface EmmaTextNode {
 }
 
 export enum EmmetOperations {
-    Add,
     Multiply,
 }

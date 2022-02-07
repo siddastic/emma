@@ -1,9 +1,9 @@
-import { EmmaElementNode, EmmaRootNode } from "../interface.js";
+import { EmmaElementNode } from "../interface.js";
 import NodeParser from "./node_parser.js";
 import SingleTagParser from "./single_tag_parser.js";
 
 class MultiplicationParser extends NodeParser {
-    constructor(private emmet: EmmaElementNode | EmmaRootNode) {
+    constructor(private emmet: EmmaElementNode) {
         super();
     }
 

@@ -1,4 +1,4 @@
-import { EmmaElementNode, EmmaRootNode } from "./interface.js";
+import { EmmaElementNode } from "./interface.js";
 import MultiplicationParser from "./parser/multiplication_parser.js";
 import NodeParser from "./parser/node_parser.js";
 import SingleTagParser from "./parser/single_tag_parser.js";
@@ -27,11 +27,11 @@ class Emma {
 
     public open() : string{
         var arr = this.splitTree();
-        let rootNode: EmmaRootNode | null | undefined;
+        let rootNode: EmmaElementNode | null | undefined;
         arr.forEach((leaf, index) => {
             if (index == 0) {
                 // parsing root node
-                const output = new StringToNode(leaf).parse<EmmaRootNode>(true);
+                const output = new StringToNode(leaf).parse<EmmaElementNode>();
                 rootNode = output;
             } else {
                 const output = new StringToNode(leaf).parse<EmmaElementNode>();
@@ -66,5 +66,6 @@ new Emma("h$.withClass${Heading $}*6").open();
 new Emma("div{Hii}*5").open();
 
 document.body.innerHTML += `<div>${new Emma("h${Heading $}* 6").open()}</div>`;
+document.body.innerHTML += `${new Emma("li#withId${Hii this is line $}*100").open()}`;
 
 console.log(new Emma("ul>li*5"));
