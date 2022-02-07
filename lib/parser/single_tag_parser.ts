@@ -26,10 +26,28 @@ class SingleTagParser extends NodeParser {
       this.emmet.element.indexOf("}") > this.emmet.element.indexOf("{")
     );
   }
+
+  get haveSiblings(): boolean {
+    return this.emmet.element.indexOf("+") > -1;
+  }
+
+  private renderSiblings(): string {
+    var siblings = this.emmet.element.split("+");
+    var resString = "";
+    siblings.forEach(sibling => {
+        this.emmet.element = sibling;
+        resString += this.run() + "\n";
+    });
+    return resString;
+  }
+
   run(): string {
     var element = this.emmet.element;
     var specialStrings = new SpecialStrings(element);
     if (specialStrings.is) return specialStrings.get();
+    if (this.haveSiblings) {
+      return this.renderSiblings();
+    }
     var text: string = "";
     if (this.containsText) {
       text = element.substring(element.indexOf("{") + 1, element.indexOf("}"));

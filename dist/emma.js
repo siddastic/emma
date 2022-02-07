@@ -72,6 +72,7 @@ new Emma("span#withId").open();
 new Emma("h$.withClass${Heading $}*6").open();
 new Emma("div{Hii}*5").open();
 console.log(new Emma("br").open());
+console.log(new Emma("ul+div+.withClass+#withId").open());
 document.body.innerHTML += "<div>" + new Emma("h${Heading $}* 6").open() + "</div>";
 // document.body.innerHTML += `${new Emma("li#withId${Hii this is line $}*100").open()}`;
 document.body.appendChild(new Emma("li#withId${Hii this is line $}*5").htmlElement);

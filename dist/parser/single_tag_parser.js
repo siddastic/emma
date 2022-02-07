@@ -57,11 +57,31 @@ var SingleTagParser = /** @class */ (function (_super) {
         enumerable: false,
         configurable: true
     });
+    Object.defineProperty(SingleTagParser.prototype, "haveSiblings", {
+        get: function () {
+            return this.emmet.element.indexOf("+") > -1;
+        },
+        enumerable: false,
+        configurable: true
+    });
+    SingleTagParser.prototype.renderSiblings = function () {
+        var _this = this;
+        var siblings = this.emmet.element.split("+");
+        var resString = "";
+        siblings.forEach(function (sibling) {
+            _this.emmet.element = sibling;
+            resString += _this.run() + "\n";
+        });
+        return resString;
+    };
     SingleTagParser.prototype.run = function () {
         var element = this.emmet.element;
         var specialStrings = new SpecialStrings(element);
         if (specialStrings.is)
             return specialStrings.get();
+        if (this.haveSiblings) {
+            return this.renderSiblings();
+        }
         var text = "";
         if (this.containsText) {
             text = element.substring(element.indexOf("{") + 1, element.indexOf("}"));
