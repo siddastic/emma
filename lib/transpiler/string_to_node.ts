@@ -1,11 +1,10 @@
-import { EmmaElementNode, EmmetOperations } from "../interface.js";
+import { EmmaElementNode, EmmetOperations } from "../others/interface.js";
 
 class StringToNode {
     constructor(private str: string) { }
 
     parse<T extends EmmaElementNode>(): T {
         return this.parseAsElementNode() as unknown as T;
-        
     }
 
     get containsMultiplier(): boolean  {

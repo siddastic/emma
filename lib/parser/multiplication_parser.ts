@@ -1,4 +1,4 @@
-import { EmmaElementNode } from "../interface.js";
+import { EmmaElementNode } from "../others/interface.js";
 import NodeParser from "./node_parser.js";
 import SingleTagParser from "./single_tag_parser.js";
 

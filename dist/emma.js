@@ -1,3 +1,4 @@
+import SpecialStrings from "./others/special_strings.js";
 import MultiplicationParser from "./parser/multiplication_parser.js";
 import SingleTagParser from "./parser/single_tag_parser.js";
 import StringToNode from "./transpiler/string_to_node.js";
@@ -21,6 +22,10 @@ var Emma = /** @class */ (function () {
     //     });
     // }
     Emma.prototype.open = function () {
+        var specialStrings = new SpecialStrings(this.emmet);
+        if (specialStrings.is) {
+            return specialStrings.get();
+        }
         var arr = this.splitTree();
         var rootNode;
         arr.forEach(function (leaf, index) {
@@ -57,6 +62,7 @@ new Emma(".with$Class*5").open();
 new Emma("span#withId").open();
 new Emma("h$.withClass${Heading $}*6").open();
 new Emma("div{Hii}*5").open();
+console.log(new Emma("br").open());
 document.body.innerHTML += "<div>" + new Emma("h${Heading $}* 6").open() + "</div>";
 document.body.innerHTML += "" + new Emma("li#withId${Hii this is line $}*100").open();
 console.log(new Emma("ul>li*5"));

@@ -11,6 +11,7 @@ var __extends = (this && this.__extends) || (function () {
         d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
     };
 })();
+import SpecialStrings from "../others/special_strings.js";
 import NodeParser from "./node_parser.js";
 var SingleTagParser = /** @class */ (function (_super) {
     __extends(SingleTagParser, _super);
@@ -58,7 +59,10 @@ var SingleTagParser = /** @class */ (function (_super) {
     });
     SingleTagParser.prototype.run = function () {
         var element = this.emmet.element;
-        var text = '';
+        var specialStrings = new SpecialStrings(element);
+        if (specialStrings.is)
+            return specialStrings.get();
+        var text = "";
         if (this.containsText) {
             text = element.substring(element.indexOf("{") + 1, element.indexOf("}"));
             element = element.split("{")[0] + element.split("}")[1];

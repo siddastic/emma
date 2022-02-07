@@ -1,4 +1,5 @@
-import { EmmaElementNode } from "../interface.js";
+import { EmmaElementNode } from "../others/interface.js";
+import SpecialStrings from "../others/special_strings.js";
 import NodeParser from "./node_parser.js";
 
 class SingleTagParser extends NodeParser {
@@ -27,23 +28,25 @@ class SingleTagParser extends NodeParser {
   }
   run(): string {
     var element = this.emmet.element;
-    var text : string = '';
-    if(this.containsText){
-        text = element.substring(element.indexOf("{")+1, element.indexOf("}"));
-        element = element.split("{")[0] + element.split("}")[1];
+    var specialStrings = new SpecialStrings(element);
+    if (specialStrings.is) return specialStrings.get();
+    var text: string = "";
+    if (this.containsText) {
+      text = element.substring(element.indexOf("{") + 1, element.indexOf("}"));
+      element = element.split("{")[0] + element.split("}")[1];
     }
     if (this.startsWithClass) {
       return `<div class = "${element.substring(1)}">${text}</div>`;
     } else if (this.startsWithId) {
       return `<div id = "${element.substring(1)}">${text}</div>`;
     } else if (this.containsClassInMiddle) {
-      return `<${element.split(".")[0]} class = "${element.split(".")[1]}">${text}</${
-        element.split(".")[0]
-      }>`;
+      return `<${element.split(".")[0]} class = "${
+        element.split(".")[1]
+      }">${text}</${element.split(".")[0]}>`;
     } else if (this.containsIdInMiddle) {
-      return `<${element.split("#")[0]} id = "${element.split("#")[1]}">${text}</${
-        element.split("#")[0]
-      }>`;
+      return `<${element.split("#")[0]} id = "${
+        element.split("#")[1]
+      }">${text}</${element.split("#")[0]}>`;
     } else {
       return `<${element}>${text}</${element}>`;
     }

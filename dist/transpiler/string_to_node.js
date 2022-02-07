@@ -1,4 +1,4 @@
-import { EmmetOperations } from "../interface.js";
+import { EmmetOperations } from "../others/interface.js";
 var StringToNode = /** @class */ (function () {
     function StringToNode(str) {
         this.str = str;
