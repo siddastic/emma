@@ -60,6 +60,12 @@ class Emma {
     public splitTree(): Array<string> {
         return this.emmet.split(">");
     }
+
+    public get htmlElement() : HTMLElement {
+        const root = document.createElement("div");
+        root.innerHTML = this.open();
+        return root;
+    }
 }
 
 // const parser = new Emma("ul>li*6");
@@ -73,6 +79,7 @@ new Emma("div{Hii}*5").open();
 console.log(new Emma("br").open());
 
 document.body.innerHTML += `<div>${new Emma("h${Heading $}* 6").open()}</div>`;
-document.body.innerHTML += `${new Emma("li#withId${Hii this is line $}*100").open()}`;
+// document.body.innerHTML += `${new Emma("li#withId${Hii this is line $}*100").open()}`;
+document.body.appendChild(new Emma("li#withId${Hii this is line $}*5").htmlElement);
 
 console.log(new Emma("ul>li*5"));

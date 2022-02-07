@@ -53,6 +53,15 @@ var Emma = /** @class */ (function () {
     Emma.prototype.splitTree = function () {
         return this.emmet.split(">");
     };
+    Object.defineProperty(Emma.prototype, "htmlElement", {
+        get: function () {
+            var root = document.createElement("div");
+            root.innerHTML = this.open();
+            return root;
+        },
+        enumerable: false,
+        configurable: true
+    });
     return Emma;
 }());
 // const parser = new Emma("ul>li*6");
@@ -64,6 +73,7 @@ new Emma("h$.withClass${Heading $}*6").open();
 new Emma("div{Hii}*5").open();
 console.log(new Emma("br").open());
 document.body.innerHTML += "<div>" + new Emma("h${Heading $}* 6").open() + "</div>";
-document.body.innerHTML += "" + new Emma("li#withId${Hii this is line $}*100").open();
+// document.body.innerHTML += `${new Emma("li#withId${Hii this is line $}*100").open()}`;
+document.body.appendChild(new Emma("li#withId${Hii this is line $}*5").htmlElement);
 console.log(new Emma("ul>li*5"));
 //# sourceMappingURL=emma.js.map
