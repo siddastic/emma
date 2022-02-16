@@ -1,0 +1,33 @@
+{
+  "name": "emma",
+  "version": "1.0.0",
+  "description": "emmet parser for web",
+  "main": "dist/emma.js",
+  "directories": {
+    "lib": "lib"
+  },
+  "devDependencies": {
+    "@open-wc/building-rollup": "^2.0.1",
+    "@rollup/plugin-typescript": "^8.3.0",
+    "deepmerge": "^4.2.2",
+    "rimraf": "^3.0.2",
+    "rollup": "^2.67.2",
+    "rollup-plugin-terser": "^7.0.2",
+    "typescript": "^4.5.5"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "watch":"npx rollup --config rollup.config.js --watch",
+    "build": "rimraf dist && tsc && rollup -c rollup.config.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/siddastic/emma.git"
+  },
+  "author": "siddastic",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/siddastic/emma/issues"
+  },
+  "homepage": "https://github.com/siddastic/emma#readme"
+}
