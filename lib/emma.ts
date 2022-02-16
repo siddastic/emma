@@ -76,6 +76,7 @@ new Emma(".with$Class*5").open();
 new Emma("span#withId").open();
 new Emma("h$.withClass${Heading $}*6").open();
 new Emma("div{Hii}*5").open();
+
 console.log(new Emma("br").open());
 
 console.log(new Emma("ul+div+.withClass+#withId").open());
